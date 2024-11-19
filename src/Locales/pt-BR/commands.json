@@ -1,0 +1,5 @@
+{
+  "ping": {
+    "response": "Pong! Latência atual: {{latency}}ms."
+  }
+}
