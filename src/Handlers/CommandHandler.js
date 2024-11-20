@@ -1,7 +1,7 @@
 import { readdirSync } from "fs";
 import { join } from "path";
 import { pathToFileURL } from "url";
-import { Logger } from "../Services/Logger.js";
+import { Logger } from "#Logger";
 
 export async function loadCommands(client, path = "src/Commands") {
   try {

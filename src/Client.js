@@ -1,13 +1,13 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord.js';
-import { loadCommands } from './Handlers/CommandHandler.js';
-import { loadEvents } from './Handlers/EventHandler.js';
-import { DBWrapper } from './Database/DBWrapper.js';
-import { Logger } from './Services/Logger.js';
-import Config from './Config/Config.js'; 
+import { loadCommands } from '#Handlers/CommandHandler.js';
+import { loadEvents } from '#Handlers/EventHandler.js';
+import { DBWrapper } from '#Database/DBWrapper.js';
+import { Logger } from '#Logger';
+import Config from '#Config'; 
 
-class YutzClient extends Client {
+class Main extends Client {
   constructor(options = {}) {
     super({
       intents: [
@@ -63,4 +63,4 @@ class YutzClient extends Client {
   }
 }
 
-export default YutzClient;
+export default Main;

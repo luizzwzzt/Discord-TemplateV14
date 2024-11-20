@@ -1,8 +1,8 @@
-import Event from '../../Handlers/Event.js';
+import Event from "#Handlers/Event.js";
 import { ActivityType } from 'discord.js';
 import { joinVoiceChannel } from '@discordjs/voice';
-import Config from '../../Config/Config.js';
-import { Logger } from '../../Services/Logger.js';
+import Config from '#Config';
+import { Logger } from '#Logger';
 
 export default class extends Event {
   constructor(client) {

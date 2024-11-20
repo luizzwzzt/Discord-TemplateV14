@@ -1,8 +1,8 @@
 {
-  "ownerOnly": "This command is exclusive to bot owners.",
-  "execution": "An error occurred while executing this command.",
-  "cooldowns": "You must wait {{time}} before using the command again.",
+  "ownerOnly": "Only developers can use this command.",
+  "execution": "An error occurred while executing this command. Please try again.",
+  "cooldowns": "Hold on, buddy! You need to wait {{time}} before using this command again.",
   "permissions": {
-    "missing": "You do not have the required permissions: {{permissions}}."
+    "missing": "You don't have the required permissions to use this command. Required permissions: {{permissions}}."
   }
 }

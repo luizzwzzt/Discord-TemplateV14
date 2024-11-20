@@ -1,7 +1,7 @@
 import { readdirSync } from "fs";
 import { join } from "path";
 import { pathToFileURL } from "url";
-import { Logger } from "../Services/Logger.js";
+import { Logger } from "#Logger";
 
 export const loadEvents = async (client, eventsPath = "src/Events") => {
   try {

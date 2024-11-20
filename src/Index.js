@@ -1,8 +1,8 @@
-import YutzClient from './Client.js';
-import { Logger } from './Services/Logger.js';
+import Main from './Client.js';
+import { Logger } from '#Logger';
 
 (async () => {
-  const client = new YutzClient();
+  const client = new Main();
   try {
     await client.start(); 
   } catch (error) {

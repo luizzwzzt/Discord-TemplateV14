@@ -1,7 +1,7 @@
-import Event from "../../Handlers/Event.js";
+import Event from "#Handlers/Event.js";
 import { Collection, InteractionType } from "discord.js";
-import config from "../../Config/Config.js";
-import { Server } from "../../Database/Schemas/GuildSchema.js";
+import config from "#Config";
+import { Server } from "#Database/Schemas/GuildSchema.js";
 import i18next from "../../Services/i18next.js";
 
 const cooldowns = new Collection();

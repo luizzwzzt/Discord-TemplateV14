@@ -1,4 +1,5 @@
-import Event from "../../Handlers/Event.js";
+import Event from "#Handlers/Event.js";
+import { createEmbed } from "#Components"; // Importando o componente Embed
 
 export default class extends Event {
   constructor(client) {
@@ -14,9 +15,11 @@ export default class extends Event {
       message.content === `<@${this.client.user.id}>` ||
       message.content === `<@!${this.client.user.id}>`
     ) {
-      return message.reply({
-        content: "testando",
+      const embed = createEmbed({
+        description: `Olá ${message.author} Use meu comando /ajuda para ver tudo o que posso fazer.`,
       });
+
+      return message.reply({ embeds: [embed] });
     }
   };
 }
