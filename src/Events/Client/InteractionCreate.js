@@ -45,9 +45,9 @@ export default class extends Event {
 
       this.setCooldown(interaction, cmd);
     } catch (error) {
-      console.error("Erro durante a execução do evento interactionCreate:", error);
+      console.error("Error during execution of the interaction Create event:", error);
       await interaction.reply({
-        content: "Ocorreu um erro ao executar este comando.",
+        content: "An error occurred while running this command.",
         ephemeral: true,
       });
     }
@@ -59,8 +59,8 @@ export default class extends Event {
       const server = await Server.findOne({ serverId });
       return server?.language || "pt-BR";
     } catch (error) {
-      console.error("Erro ao buscar idioma do servidor:", error);
-      return "pt-BR"; // Idioma padrão
+      console.error("Error when fetching language from server:", error);
+      return "pt-BR";
     }
   };
 
@@ -78,7 +78,6 @@ export default class extends Event {
     const expirationTime = cooldowns.get(cooldownKey);
 
     if (expirationTime && now < expirationTime) {
-      const remainingTime = Math.floor((expirationTime - now) / 1000);
 
       await interaction.reply({
         content: t("cooldowns", { time: `<t:${Math.floor(expirationTime / 1000)}:R>` }),
@@ -117,9 +116,9 @@ export default class extends Event {
     try {
       await cmd.run(interaction, t);
     } catch (error) {
-      console.error("Erro ao executar o comando:", error);
+      console.error("Error executing command:", error);
       await interaction.reply({
-        content: "Ocorreu um erro ao executar este comando.",
+        content: t("execution"),
         ephemeral: true,
       });
     }

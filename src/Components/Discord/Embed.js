@@ -5,9 +5,8 @@ export function createEmbed({ title = "", description = "", color = 0x0099ff }) 
     .setDescription(description)
     .setColor(color);            
   
-  // Se o título for fornecido, adicione-o
   if (title) {
-    embed.setTitle(title);       // Se houver título, define
+    embed.setTitle(title);       
   }
 
   return embed;

@@ -5,7 +5,7 @@ import { loadCommands } from '#Handlers/CommandHandler.js';
 import { loadEvents } from '#Handlers/EventHandler.js';
 import { DBWrapper } from '#Database/DBWrapper.js';
 import { Logger } from '#Logger';
-import Config from '#Config'; 
+import Config from '#Config';
 
 class Main extends Client {
   constructor(options = {}) {
@@ -22,42 +22,42 @@ class Main extends Client {
     this.dbWrapper = new DBWrapper(); 
   }
 
-
   async registerCommands() {
     const rest = new REST({ version: '10' }).setToken(this.token);
-  
-    const commandData = this.commands.map((cmd) => {
-      if (cmd.data && typeof cmd.data.toJSON === 'function') {
-        return cmd.data.toJSON(); 
-      } else {
-        Logger.error(`Comando ${cmd.name} não tem dados válidos.`);
-        return null; 
-      }
-    }).filter(cmd => cmd !== null); 
-  
+
+    const commandData = this.commands
+      .map((cmd) => (cmd.data && typeof cmd.data.toJSON === 'function' ? cmd.data.toJSON() : null))
+      .filter(cmd => cmd !== null);
+
     try {
-      Logger.info('Registrando comandos no Discord...');
       await rest.put(
         Routes.applicationCommands(Config.clientid), 
         { body: commandData }
       );
-      Logger.success('Comandos registrados com sucesso!');
+      Logger.success('Commands successfully registered.');
     } catch (error) {
-      Logger.error('Erro ao registrar os comandos:', error);
+      Logger.error('Failed to register commands with Discord.', error);
     }
   }
-  
+
   async start() {
     try {
-      Logger.info('Iniciando o bot...');
-      await this.dbWrapper.connect(); 
-      await loadCommands(this); 
-      await loadEvents(this);
+      // Carrega banco de dados, comandos e eventos em paralelo para rapidez
+      await Promise.all([
+        this.dbWrapper.connect(), 
+        loadCommands(this), 
+        loadEvents(this)
+      ]);
+
       await this.registerCommands(); 
       await this.login(this.token); 
-      Logger.success('Bot online e pronto para uso!');
+      
+      Logger.custom(
+        { name: "STARTUP", options: ["green", "bold"] },
+        `Bot started successfully and is ready!`
+      );
     } catch (error) {
-      Logger.error('Erro ao iniciar o bot:', error);
+      Logger.error('Failed to start the bot.', error);
       process.exit(1); 
     }
   }

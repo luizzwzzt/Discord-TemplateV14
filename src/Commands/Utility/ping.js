@@ -1,9 +1,9 @@
-import Command from "#Handlers/Command.js";
+import Command from '#Handlers/Command.js';
 
 export default class PingCommand extends Command {
   constructor(client) {
     super(client, {
-      name: "ping",
+      name: 'ping',
       description: "Returns the bot's ping.",
       cooldown: 5000,
     });
@@ -12,16 +12,16 @@ export default class PingCommand extends Command {
   async run(interaction, t) {
     const latency = interaction.client.ws.ping;
 
-    let dbLatency = "N/A";
+    let dbLatency = 'N/A';
     try {
       dbLatency = await interaction.client.dbWrapper.getLatency();
-      if (dbLatency === null) dbLatency = "Erro ao medir"; // Tratar erros
+      if (dbLatency === null) dbLatency = 'Error when measuring';
     } catch (error) {
-      console.error("[PING COMMAND] Failed to fetch database latency:", error);
+      console.error('[PING COMMAND] Failed to fetch database latency:', error);
     }
 
     await interaction.reply({
-      content: t("ping", { latency, dbLatency }),
+      content: t('ping', { latency, dbLatency }),
       ephemeral: true,
     });
   }

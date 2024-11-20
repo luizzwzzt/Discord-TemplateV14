@@ -26,9 +26,6 @@ export default class extends Event {
         guildId: channel.guild.id,
         adapterCreator: channel.guild.voiceAdapterCreator,
       });
-      Logger.success(`Conectado ao canal de voz: ${channel.name}`);
-    } else {
-      Logger.warn(`Canal de voz com ID ${channelId} não encontrado.`);
-    }
+    } 
   };
 }

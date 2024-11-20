@@ -4,9 +4,10 @@
   "description": "Um simples projeto de bot para o discordjs",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon src/Index.js"
+    "dev": "cross-env NODE_ENV=development nodemon src/Index.js --delay 2",
+    "start": "cross-env NODE_ENV=production node src/Index.js"
   },
-  "main": "Client.js",
+  "main": "Client.js",  
   "repository": "null",
   "author": "Luiz Eduardo",
   "license": "MIT",
@@ -30,9 +31,7 @@
     "#Logger": "./src/Services/Logger.js",
     "#Config": "./src/Config/Config.js",
     "#Database/*": "./src/Database/*",
-    "#Components": "./src/Components/index.js"
-
+    "#Components": "./src/Components/index.js",
+    "#Services/*": "./src/Services/*"
   }
-  
-
 }

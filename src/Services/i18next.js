@@ -17,8 +17,8 @@ i18next
     backend: {
       loadPath: path.join(localesPath, '/{{lng}}/{{ns}}.json'),
     },
-    ns: ['commands', 'errors'],
-    defaultNS: 'commands',
+    ns: ['commands', 'errors', 'events'],
+    defaultNS: 'commands',  
     interpolation: {
       escapeValue: false,
     },
@@ -31,7 +31,7 @@ function getSupportedLanguages() {
       .readdirSync(localesPath) 
       .filter((file) => fs.statSync(path.join(localesPath, file)).isDirectory()); 
   } catch (error) {
-    console.error('Erro ao carregar idiomas suportados:', error);
+    console.error('Error loading supported languages:', error);
     return ['pt-BR']; 
   }
 }

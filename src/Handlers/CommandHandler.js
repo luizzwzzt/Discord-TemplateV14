@@ -13,17 +13,20 @@ export async function loadCommands(client, path = "src/Commands") {
         const { default: CommandClass } = await import(pathToFileURL(filePath).href);
 
         const commandInstance = new CommandClass(client, {
-          name: CommandClass.name.toLowerCase(),  // Defina o nome do comando
-          description: CommandClass.description,  // Certifique-se de passar a descrição como uma string
-          cooldown: CommandClass.cooldown || 5000,  // Caso o cooldown não tenha sido definido, define o valor padrão
-          ownerOnly: CommandClass.ownerOnly || false,  // Propriedade ownerOnly
-          permissions: CommandClass.permissions || [],  // Permissões do comando
+          name: CommandClass.name.toLowerCase(),  
+          description: CommandClass.description, 
+          cooldown: CommandClass.cooldown || 5000,  
+          ownerOnly: CommandClass.ownerOnly || false,  
+          permissions: CommandClass.permissions || [],  
         });
 
-        client.commands.push(commandInstance);  // Adiciona o comando à lista de comandos
+        client.commands.push(commandInstance); 
       }
     }
-    Logger.success("Commands loaded successfully.");
+    Logger.custom(
+      { name: "COMMANDS", options: ["blue", "bold"] },
+      `Commands loaded successfully`
+    );
   } catch (error) {
     Logger.error("Error loading commands:", error);
   }
